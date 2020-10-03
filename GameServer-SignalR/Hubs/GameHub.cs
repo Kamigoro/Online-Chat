@@ -8,5 +8,9 @@ namespace GameServer_SignalR.Hubs
 {
     public class GameHub : Hub
     {
+        public async Task TakeTurn(int position)
+        {
+            await Clients.All.SendAsync("ReceivePlayerTurn", position);
+        }
     }
 }
