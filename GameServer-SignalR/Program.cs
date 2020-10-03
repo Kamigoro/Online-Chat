@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace GameServer_SignalR
+namespace ChatServer_SignalR
 {
     public class Program
     {

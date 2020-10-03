@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GameServer_SignalR.Hubs;
+using ChatServer_SignalR.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace GameServer_SignalR
+namespace ChatServer_SignalR
 {
     public class Startup
     {
@@ -32,7 +32,7 @@ namespace GameServer_SignalR
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<GameHub>("/tictactoe");
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

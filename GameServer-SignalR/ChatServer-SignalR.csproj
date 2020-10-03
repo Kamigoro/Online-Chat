@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>GameServer_SignalR</RootNamespace>
+    <RootNamespace>ChatServer_SignalR</RootNamespace>
   </PropertyGroup>
 
 </Project>
