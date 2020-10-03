@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChatClient.Views;
+using Microsoft.AspNetCore.SignalR.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,17 @@ namespace WPFChatClient
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void TBXUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            BTNLogin.IsEnabled = string.IsNullOrEmpty(TBXUsername.Text) ? false : true;
+        }
+
+        private void BTNLogin_Click(object sender, RoutedEventArgs e)
+        {
+            new ChatWindow(TBXUsername.Text).Show();
+            this.Close();
         }
     }
 }
