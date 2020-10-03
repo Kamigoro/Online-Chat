@@ -8,7 +8,7 @@ namespace WPFChatClient.Services
 {
     public class SignalRChatService
     {
-        private readonly HubConnection hubConnection;
+        private HubConnection hubConnection;
 
         public event Action<string, string> MessageReceivedEvent;
 
