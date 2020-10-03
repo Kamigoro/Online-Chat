@@ -1,0 +1,45 @@
+﻿<Window x:Class="WPFChatClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFChatClient"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Login" 
+        MinHeight="350" MaxHeight="350"
+        MinWidth="400" MaxWidth="400">
+    <Grid Background="#3D3F3E">
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="200"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Style="{StaticResource MaterialDesignHeadline3TextBlock}"
+                   Text="KamiChat"/>
+        <Image Grid.Row="0"
+               Source="Assets/avatar.png"
+               VerticalAlignment="Center"
+               Height="75"/>
+
+        <StackPanel Grid.Row="1">
+            <TextBox x:Name="TBXUsername"
+                     Width="200"
+                     materialDesign:HintAssist.Hint="Username"
+                     Foreground="White"
+                     Background="#343A40">
+            </TextBox>
+            <Button Content="Login"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    ToolTip="You will enter the chat with this username"
+                    Foreground="#0056B3"
+                    Margin="0,20"
+                    Width="100"/>
+        </StackPanel>
+        
+
+    </Grid>
+</Window>
