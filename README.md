@@ -1,2 +1,2 @@
-# Naval-Battle
-A asp.net core web app using signalR to manage real-time communication
+# Tic-Tac-Toe
+A tic-tac-toe wpf app using signalR to manage real-time communication
