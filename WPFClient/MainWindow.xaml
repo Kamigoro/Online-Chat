@@ -27,12 +27,15 @@
 
         <StackPanel Grid.Row="1">
             <TextBox x:Name="TBXUsername"
+                     TextChanged="TBXUsername_TextChanged"
                      Width="200"
                      materialDesign:HintAssist.Hint="Username"
                      Foreground="White"
-                     Background="#343A40">
-            </TextBox>
-            <Button Content="Login"
+                     Background="#343A40"/>
+            <Button x:Name="BTNLogin"
+                    IsEnabled="False"
+                    Click="BTNLogin_Click"
+                    Content="Login"
                     Style="{StaticResource MaterialDesignRaisedLightButton}"
                     ToolTip="You will enter the chat with this username"
                     Foreground="#0056B3"
