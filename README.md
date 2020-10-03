@@ -1,2 +1,2 @@
-# Tic-Tac-Toe
-A tic-tac-toe wpf app using signalR to manage real-time communication
+# Online chat
+A online chat wpf app using signalR to manage real-time communication
