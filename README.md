@@ -1,5 +1,6 @@
 # Online chat
-A online chat wpf app using signalR to manage real-time communication
+A online chat wpf app using signalR to manage real-time communication.
+The signalR server is hosted on a azure server.
 
 ## Description
 
@@ -10,3 +11,10 @@ You are limited to a username of 15 letters max and each message is 30 letters m
 
 ![Login screen](./readme-images/login-screen.png)
 
+If the connexion fails you'll get a snackbar message telling you that.
+
+![Login failed](./readme-images/login-failed.png)
+
+If everything's good then you'll be connected to the hub
+
+![Hub](./readme-images/hub.png)
