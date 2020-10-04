@@ -1,4 +1,6 @@
-﻿using ChatClient.Views;
+﻿using ChatClient.ViewModels;
+using ChatClient.Views;
+using MaterialDesignThemes.Wpf;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
@@ -22,19 +24,36 @@ namespace WPFChatClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainViewModel MainViewModel { get; set; }
+
         public MainWindow()
         {
+            MainViewModel = new MainViewModel();
+            DataContext = MainViewModel;
+            MainViewModel.CloseWindowRequest_Event += ClosingWindow_Request;
+            MainViewModel.ConnexionFailed_Event += ConnexionFailed_EventHandler;
             InitializeComponent();
         }
 
         private void TBXUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
-            BTNLogin.IsEnabled = string.IsNullOrEmpty(TBXUsername.Text) ? false : true;
+            BTNLogin.IsEnabled = string.IsNullOrWhiteSpace(TBXUsername.Text) ? false : true;
         }
 
         private void BTNLogin_Click(object sender, RoutedEventArgs e)
         {
-            new ChatWindow(TBXUsername.Text).Show();
+            MainViewModel.Login();
+        }
+
+        private void ConnexionFailed_EventHandler()
+        {
+            var messageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(2000));
+            ConnexionSnackBar.MessageQueue = messageQueue;
+            ConnexionSnackBar.MessageQueue.Enqueue("Connexion to hub failed");
+        }
+
+        private void ClosingWindow_Request()
+        {
             this.Close();
         }
     }

@@ -14,6 +14,8 @@ using ChatClient.Models;
 using WPFChatClient.Services;
 using System.Diagnostics;
 using System.Threading;
+using ChatClient.ViewModels;
+using MaterialDesignThemes.Wpf;
 
 namespace ChatClient.Views
 {
@@ -22,38 +24,31 @@ namespace ChatClient.Views
     /// </summary>
     public partial class ChatWindow : Window
     {
-        private readonly string _username;
-        public List<Message> Messages { get; set; } = new List<Message>();
-        private readonly SignalRChatService chatService;
+        public ChatViewModel ChatViewModel { get; set; }
 
-        public ChatWindow(string username)
+        public ChatWindow(string username, SignalRChatService chatService)
         {
-            Messages.Add(new Message("",""));
+            ChatViewModel = new ChatViewModel(username, chatService);
+            ChatViewModel.ClearTextbox_Request += ClearTextbox_RequestHandler;
+            ChatViewModel.ConnexionFailed_Event += ConnexionFailed_EventHandler;
+            DataContext = ChatViewModel;
+            this.Title = $"Online chat - {username}";
             InitializeComponent();
-            _username = username;
-            this.Title = $"Online chat - {_username}";
-            HubConnection hubConnection = new HubConnectionBuilder().WithUrl("http://localhost:5000/chat").Build();
-            chatService = new SignalRChatService(hubConnection);
-            chatService.Connect().ContinueWith(task =>
-            {
-                if(task.Exception != null)
-                {
-                    Debug.WriteLine("Connexion failed");
-                }
-                else
-                {
-                    Debug.WriteLine("Connexion success");
-                }
-            });
-            chatService.MessageReceivedEvent += Message_Received;
         }
 
-        private void Message_Received(string username, string text)
+        private void ConnexionFailed_EventHandler()
         {
-            Message message = new Message(username, text);
-            Messages.Add(message);
-            MessageDisplayer.ItemsSource = null;
-            MessageDisplayer.ItemsSource = Messages;
+            var messageQueue = new SnackbarMessageQueue(TimeSpan.FromMilliseconds(2000));
+            ConnexionSnackBar.MessageQueue = messageQueue;
+            ConnexionSnackBar.MessageQueue.Enqueue("Message couldn't be delivered");
+        }
+
+        private void ClearTextbox_RequestHandler()
+        {
+            Dispatcher.BeginInvoke((Action)delegate ()
+            {
+                TBXMessage.Clear();
+            });
         }
 
         private void TBXMessage_TextChanged(object sender, TextChangedEventArgs e)
@@ -63,8 +58,7 @@ namespace ChatClient.Views
 
         private void BTNSendMessage_Click(object sender, RoutedEventArgs e)
         {
-            chatService.SendMessage(_username,TBXMessage.Text);
-            TBXMessage.Clear();
+            ChatViewModel.SendMessage();
         }
     }
 }

@@ -10,9 +10,10 @@
         MinWidth="400" MaxWidth="400">
     <Grid Background="#3D3F3E">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition />
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <ScrollViewer Grid.Row="0">
@@ -36,8 +37,9 @@
         
         <TextBox x:Name="TBXMessage"
                  TextChanged="TBXMessage_TextChanged"
+                 Text="{Binding TextToSend}"
+                 MaxLength="30"
                  Grid.Row="1"
-                 Height="50"
                  VerticalAlignment="Top"
                  Background="AliceBlue"
                  AcceptsReturn="True"
@@ -50,8 +52,12 @@
                 Click="BTNSendMessage_Click"
                 Content="Send Message"
                 Style="{StaticResource MaterialDesignRaisedLightButton}"
-                Foreground="#0056B3"
+                Foreground="White"
                 Grid.Row="2"/>
 
+        <materialDesign:Snackbar x:Name="ConnexionSnackBar"
+                                 Grid.Row="3"
+                                 MessageQueue="{materialDesign:MessageQueue}"/>
+        
     </Grid>
 </Window>

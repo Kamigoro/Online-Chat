@@ -14,13 +14,5 @@ namespace WPFChatClient
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            HubConnection hubConnection = new HubConnectionBuilder()
-                .WithUrl("http://localhost:5000/chat")
-                .Build();
-
-            base.OnStartup(e);
-        }
     }
 }

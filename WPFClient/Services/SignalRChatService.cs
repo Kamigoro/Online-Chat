@@ -10,12 +10,12 @@ namespace WPFChatClient.Services
     {
         private HubConnection hubConnection;
 
-        public event Action<string, string> MessageReceivedEvent;
+        public event Action<string, string> MessageReceived_Event;
 
         public SignalRChatService(HubConnection connection)
         {
             hubConnection = connection;
-            hubConnection.On<string, string>("ReceiveMessage", (senderName,message) => MessageReceivedEvent?.Invoke(senderName, message));
+            hubConnection.On<string, string>("ReceiveMessage", (senderName,message) => MessageReceived_Event?.Invoke(senderName, message));
         }
 
         public async Task Connect()

@@ -13,6 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="200"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -27,7 +28,9 @@
 
         <StackPanel Grid.Row="1">
             <TextBox x:Name="TBXUsername"
+                     Text="{Binding Username}"
                      TextChanged="TBXUsername_TextChanged"
+                     MaxLength="15"
                      Width="200"
                      materialDesign:HintAssist.Hint="Username"
                      Foreground="White"
@@ -38,11 +41,15 @@
                     Content="Login"
                     Style="{StaticResource MaterialDesignRaisedLightButton}"
                     ToolTip="You will enter the chat with this username"
-                    Foreground="#0056B3"
+                    Foreground="White"
                     Margin="0,20"
                     Width="100"/>
         </StackPanel>
-        
+
+
+        <materialDesign:Snackbar x:Name="ConnexionSnackBar"
+                                 Grid.Row="2"
+                                 MessageQueue="{materialDesign:MessageQueue}"/>
 
     </Grid>
 </Window>
