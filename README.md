@@ -8,3 +8,5 @@ You are limited to a username of 15 letters max and each message is 30 letters m
 
 ## Example
 
+![Login screen](readme-images/login.png)
+
